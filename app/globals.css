@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background-rgb: 255, 255, 255; /* White RGB for rgba usage */
+    --foreground-rgb: 30, 41, 59; /* Dark Slate Gray RGB */
+
+    --background: hsl(0 0% 100%); /* White */
+    --foreground: hsl(224 71.4% 4.1%); /* Dark Gray / Almost Black */
+
+    --muted-rgb: 241, 245, 249; /* Slate 100 RGB */
+    --muted: hsl(220 14.3% 95.9%); /* Light Gray */
+    --muted-foreground: hsl(220 8.9% 46.1%); /* Medium Gray */
+
+    --popover-rgb: 255, 255, 255;
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(224 71.4% 4.1%);
+
+    --card-rgb: 255, 255, 255;
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(224 71.4% 4.1%);
+
+    --border-rgb: 226, 232, 240; /* Slate 200 RGB */
+    --border: hsl(220 13% 91%); /* Light Gray Border */
+    --input-border-rgb: 203, 213, 225; /* Slate 300 RGB */
+    --input: hsl(220 13% 85%); /* Slightly darker for input */
+
+    --primary-rgb: 59, 130, 246; /* Blue 500 RGB */
+    --primary: hsl(207 90% 54%); /* Soft Blue */
+    --primary-foreground-rgb: 255, 255, 255;
+    --primary-foreground: hsl(0 0% 100%); /* White */
+
+    --secondary-rgb: 241, 245, 249;
+    --secondary: hsl(220 14.3% 95.9%); /* Light Gray */
+    --secondary-foreground: hsl(224 71.4% 4.1%); /* Dark Gray */
+
+    --accent-rgb: 241, 245, 249;
+    --accent: hsl(220 14.3% 95.9%); /* Light Gray */
+    --accent-foreground: hsl(224 71.4% 4.1%); /* Dark Gray */
+
+    --destructive-rgb: 239, 68, 68; /* Red 500 RGB */
+    --destructive: hsl(0 84.2% 60.2%); /* Red */
+    --destructive-foreground: hsl(0 0% 100%); /* White */
+
+    --ring-rgb: 96, 165, 250; /* Blue 400 RGB */
+    --ring: hsl(207 90% 64%); /* Lighter Soft Blue for focus rings */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* ダークテーマが必要な場合は、ここにダークテーマ用の変数を定義します */
+  }
+}
+
+@layer base {
+  body {
+    @apply text-foreground;
+    background-image: url("/images/glass-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* スクロールバーのスタイル（任意） */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(var(--background-rgb), 0.1);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-rgb), 0.4);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 0.6);
+  }
+}
+
+@layer components {
+  .glass-effect {
+    background-color: rgba(var(--background-rgb), 0.65); /* 透明度を上げた白 */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(var(--border-rgb), 0.2); /* さらに薄いボーダー */
+    @apply shadow-xl; /* 少し強めの影で浮遊感を出す */
+  }
+
+  .glass-effect-darker {
+    /* メッセージバブルなど、少し色を乗せたい場合 */
+    background-color: rgba(var(--background-rgb), 0.5);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgba(var(--border-rgb), 0.15);
+    @apply shadow-lg;
+  }
+
+  .glass-interactive {
+    /* ボタンや入力欄などインタラクティブな要素用 */
+    background-color: rgba(var(--background-rgb), 0.75);
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+    border: 1px solid rgba(var(--input-border-rgb), 0.3);
+    @apply shadow-md transition-all duration-200;
+  }
+  .glass-interactive:hover {
+    background-color: rgba(var(--background-rgb), 0.85);
+    border-color: rgba(var(--input-border-rgb), 0.5);
+  }
+  .glass-interactive:focus-within,
+  .glass-interactive:focus {
+    box-shadow: 0 0 0 2px rgba(var(--ring-rgb), 0.4);
+    border-color: rgba(var(--primary-rgb), 0.5);
+  }
+}
